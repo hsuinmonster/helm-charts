@@ -4,6 +4,9 @@
 ```
 $ helm repo add everpeace https://everpeace.github.io/helm-charts
 ```
-
+## Installation
+```
+helm install -n kube-localstack2-release -f values.yaml . --wait
+```
 ## License
 MIT License.
