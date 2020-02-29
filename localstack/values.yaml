@@ -12,7 +12,7 @@ service:
     externalPort: 8080
     internalPort: 8080
     # set this when you used service.type = NodePort and wanted to use fixed node port
-    # nodePort:
+    nodePort: 30015
   activeLocalStackServices:
     # comment out services you want to spawn
     # - name: apigateway
@@ -24,12 +24,12 @@ service:
     #   internalPort: 4568
     #   externalPort: 4568
     #   # set this when you used service.type = NodePort and wanted to use fixed node port
-    #   nodePort:
-    # - name: dynamodb
-    #   internalPort: 4569
-    #   externalPort: 4569
+    # nodePort:
+    - name: dynamodb
+      internalPort: 8000
+      externalPort: 8000
     #   # set this when you used service.type = NodePort and wanted to use fixed node port
-    #   nodePort:
+      nodePort: 30010
     # - name: dynamodbstreams
     #   internalPort: 4570
     #   externalPort: 4570
@@ -39,12 +39,12 @@ service:
     #   internalPort: 4571
     #   externalPort: 4571
     #   # set this when you used service.type = NodePort and wanted to use fixed node port
-    #   nodePort:
+    # nodePort:
     - name: s3
-      internalPort: 4572
-      externalPort: 4572
+      internalPort: 4569
+      externalPort: 4569
       # set this when you used service.type = NodePort and wanted to use fixed node port
-      nodePort:
+      nodePort: 30011
     # - name: firehose
     #   internalPort: 4573
     #   externalPort: 4573
@@ -55,16 +55,16 @@ service:
     #   externalPort: 4574
     #   # set this when you used service.type = NodePort and wanted to use fixed node port
     #   nodePort:
-    # - name: sns
-    #   internalPort: 4575
-    #   externalPort: 4575
+    - name: sns
+      internalPort: 4575
+      externalPort: 4575
     #   # set this when you used service.type = NodePort and wanted to use fixed node port
-    #   nodePort:
-    # - name: sqs
-    #   internalPort: 4576
-    #   externalPort: 4576
+      nodePort: 30014
+    - name: sqs
+      internalPort: 4576
+      externalPort: 4576
     #   # set this when you used service.type = NodePort and wanted to use fixed node port
-    #   nodePort:
+      nodePort: 30013
     # - name: redshift
     #   internalPort: 4577
     #   externalPort: 4577
@@ -85,14 +85,14 @@ service:
     #   externalPort: 4580
     #   # set this when you used service.type = NodePort and wanted to use fixed node port
     #   nodePort:
-    # - name: cloudformation
-    #   internalPort: 4581
-    #   externalPort: 4581
+    - name: cloudformation
+      internalPort: 4581
+      externalPort: 4581
     #   # set this when you used service.type = NodePort and wanted to use fixed node port
-    #   nodePort:
-    # - name: cloudwatch
-    #   internalPort: 4582
-    #   externalPort: 4582
+      nodePort: 30012
+    - name: cloudwatch
+      internalPort: 4582
+      externalPort: 4582
     #   # set this when you used service.type = NodePort and wanted to use fixed node port
     #   nodePort:
     # - name: ssm
@@ -131,7 +131,7 @@ resources: {}
 persistence:
   enabled: true
   ## Name of existing persistent volume to attach
-  # existingClaim: ""
+  existingClaim: localstack2-pvc
 
   ##  Persistent Volume Storage Class
   ## If defined, storageClassName: <storageClass>
@@ -140,17 +140,17 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  storageClass: "standard"
+  # storageClass: "standard"
 
   ## Persistent Volume Access Mode.
-  accessMode: ReadWriteOnce
+  # accessMode: ReadWriteOnce
 
   ## Persistent Volume Storage Size.
-  size: 20Gi
+  # size: 20Gi
 
 localstack:
   useSsl: "false"
-  defaultRegion: "ap-northeast-1"
+  defaultRegion: "us-east-1"
   #  default of hostExternal {{service.name}}.{{namespace deployed into}}
   #  hostExternal:
   kinesisErrorProbability: "0.0"
